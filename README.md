@@ -1,1 +1,1 @@
-#battleships_web
+Battleships for the Web
