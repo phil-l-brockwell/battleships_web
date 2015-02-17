@@ -1,1 +1,0 @@
-Battleships for the Web
