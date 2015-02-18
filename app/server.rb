@@ -9,8 +9,9 @@ class BattleShipsWeb < Sinatra::Base
 
   end
 
-  get('/new_game') do
-    erb :new_game
+  get('/enter_name') do
+    @player1 = params[:Player1]
+    erb :enter_name
   end
 
   # start the server if ruby file executed directly
