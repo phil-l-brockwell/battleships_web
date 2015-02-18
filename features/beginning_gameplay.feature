@@ -5,5 +5,5 @@ Feature: Entering your name
 
   Scenario: Beginning Gameplay
     Given I am on enter_name page
-    When I provide "Player1" name
+    When I provide "Player1" name and click "Begin"
     Then I should see the board

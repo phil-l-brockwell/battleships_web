@@ -2,10 +2,11 @@ Given(/^I am on enter_name page$/) do
   visit('/enter_name')
 end
 
-When(/^I provide "(.*?)" name$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+When(/^I provide "(.*?)" name and click "(.*?)"$/) do |arg1, arg2|
+  fill_in(arg1, with: "Player1")
+  click_button(arg2)
 end
 
 Then(/^I should see the board$/) do
-  pending # express the regexp above with the code you wish you had
+  expect(page).to have_content('board')
 end
