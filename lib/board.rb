@@ -1,3 +1,5 @@
+require './lib/cell'
+
 class Board
 	attr_reader :grid
 
@@ -42,7 +44,7 @@ private
 	end
 
 	def is_a_ship?(cell)
-		cell.content.respond_to?(:sunk?) 
+		cell.content.respond_to?(:sunk?)
 	end
 
 	def any_coord_not_on_grid?(coords)
