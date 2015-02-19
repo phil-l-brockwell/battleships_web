@@ -1,9 +1,10 @@
-require './lib/water'
+require_relative '../lib/water'
 
 class Cell
-	attr_accessor :content
+	attr_accessor :content, :hit
 	def initialize
 		@hit = false
+		@content = Water.new
 	end
 
 	def shoot

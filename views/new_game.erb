@@ -10,13 +10,15 @@
 <% @player.board.grid.each_slice(10) do |row|%>
   <tr>
    <%row.each do |cell| %>
-    <td id=""> <a href="/shoot?cell=<%=cell.first%>"><%=cell[0] %><%=cell[2]%></a> </td>
+    <td> <a href="/shoot?cell=<%=cell[0]%>"><%= cell[0] %>></a> </td>
    <%end%>
   </tr>
 <%end%>
 </table>
 
-
+<% if @message %>
+  <%= @message %>
+<% end %>
 <!-- <html>
   <head>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -50,3 +52,4 @@ board
   </tr>
 </table> -->
 </body>
+

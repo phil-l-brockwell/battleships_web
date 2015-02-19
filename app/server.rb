@@ -3,6 +3,7 @@ require_relative '../lib/game'
 require_relative '../lib/player'
 require_relative '../lib/board'
 require_relative '../lib/cell'
+require_relative '../lib/ship'
 
 
 
@@ -10,8 +11,9 @@ class BattleShipsWeb < Sinatra::Base
 
   set :views, Proc.new { File.join(root, "..", "views") }
 
-  game = Game.new
+  enable :sessions
 
+  game = Game.new
 
   get('/') do
     erb :index
@@ -22,28 +24,43 @@ class BattleShipsWeb < Sinatra::Base
   end
 
   post('/new_game') do
+    ship = Ship.new(1)
+    ship2 = Ship.new(1)
+    ship3 = Ship.new(1)
+    ship4 = Ship.new(1)
     player = Player.new()
     player.name = params[:user_name]
     player.board = Board.new(Cell)
-    puts player.board.inspect
+    player.board.place(ship, :A7)
+    player.board.place(ship2, :B7)
     game.add_player(player)
     computer = Player.new()
     computer.name = "computer"
     computer.board = Board.new(Cell)
-    puts computer.board.inspect
     game.add_player(computer)
+    computer.board.place(ship3, :A1)
+    computer.board.place(ship4, :B1)
+    @computer = game.player2
     @player = game.player1
-    puts game.inspect
+    puts @computer.inspect
     erb :new_game
   end
 
   get '/shoot' do
-    puts game.inspect
-    game.shoots(params[:cell])
-    @player = game.player1
-    erb :new_game
+    begin
+      game.shoots(params[:cell].to_sym)
+    rescue GameOverError => e
+      @message = e.message
+    end
+      @player = game.player1
+      erb :new_game
+  end
+
+  get './winnner' do
+
   end
 
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
+

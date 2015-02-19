@@ -1,5 +1,3 @@
-require './lib/cell'
-
 class Board
 	attr_reader :grid
 
@@ -12,7 +10,7 @@ class Board
 
 	def place(ship, coord, orientation = :horizontally)
 		coords = [coord]
-		ship.size.times{coords << next_coord(coords.last, orientation)}
+		(ship.size - 1).times{coords << next_coord(coords.last, orientation)}
 		put_on_grid_if_possible(coords, ship)
 	end
 
@@ -49,6 +47,8 @@ private
 
 	def any_coord_not_on_grid?(coords)
 		(grid.keys & coords) != coords
+
+		!coords.all?{|coord|grid.keys.include?(coord)}
 	end
 
 	def any_coord_is_already_a_ship?(coords)
