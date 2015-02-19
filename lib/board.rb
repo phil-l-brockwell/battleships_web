@@ -1,3 +1,9 @@
+class DoubleHitError < Exception
+	def message
+		"You cannot hit the same cell twice..."
+	end
+end
+
 class Board
 	attr_reader :grid
 
@@ -19,7 +25,7 @@ class Board
 	end
 
 	def shoot_at(coordinate)
-		raise "You cannot hit the same square twice" if  grid[coordinate].hit?
+		raise DoubleHitError if grid[coordinate].hit?
 		grid[coordinate].shoot
 	end
 
@@ -66,4 +72,3 @@ private
 	end
 
 end
-

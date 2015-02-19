@@ -1,55 +1,24 @@
-<%= @player.board.grid %>
-
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
+    <h3>Its your turn <%= @player.name.capitalize %></h3>
+
+    <% if @message %>
+      <h1><%= @message %></h1>
+    <% end %>
+
+
 
 <table class="center">
 <% @player.board.grid.each_slice(10) do |row|%>
   <tr>
    <%row.each do |cell| %>
-    <td> <a href="/shoot?cell=<%=cell[0]%>"><%= cell[0] %>></a> </td>
+    <td id="button"> <a href="/shoot?cell=<%=cell[0]%>"><%= cell[0] %></a> </td>
    <%end%>
   </tr>
 <%end%>
 </table>
 
-<% if @message %>
-  <%= @message %>
-<% end %>
-<!-- <html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-board
-<table class="center">
-  <tr>
-    <th></th>
-    <th>A</th>
-    <th>B</th>
-    <th>C</th>
-  </tr>
-  <tr>
-    <th>1</th>
-    <td id="A1" class="cell"></td>
-    <td id="B1" class="cell"></td>
-    <td id="C1" class="cell"></td>
-  </tr>
-    <tr>
-    <th>2</th>
-    <td id="A2" class="cell"></td>
-    <td id="B2" class="cell"></td>
-    <td id="C2" class="cell"></td>
-  </tr>
-    <tr>
-    <th>3</th>
-    <td id="A3" class="cell"></td>
-    </td id="B3" class="cell"></td>
-    <td id="C3" class="cell"></td>
-  </tr>
-</table> -->
 </body>
-

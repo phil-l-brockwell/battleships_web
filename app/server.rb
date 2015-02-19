@@ -10,6 +10,7 @@ require_relative '../lib/ship'
 class BattleShipsWeb < Sinatra::Base
 
   set :views, Proc.new { File.join(root, "..", "views") }
+  set :public_folder, Proc.new { File.join(root, '..', "public") }
 
   enable :sessions
 
@@ -40,9 +41,7 @@ class BattleShipsWeb < Sinatra::Base
     game.add_player(computer)
     computer.board.place(ship3, :A1)
     computer.board.place(ship4, :B1)
-    @computer = game.player2
-    @player = game.player1
-    puts @computer.inspect
+    @player = game.current_player
     erb :new_game
   end
 
@@ -51,8 +50,10 @@ class BattleShipsWeb < Sinatra::Base
       game.shoots(params[:cell].to_sym)
     rescue GameOverError => e
       @message = e.message
+    rescue DoubleHitError => e
+      @message = e.message
     end
-      @player = game.player1
+      @player = game.current_player
       erb :new_game
   end
 

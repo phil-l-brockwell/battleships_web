@@ -1,11 +1,8 @@
 class GameOverError < Exception
 	def message
-		'Game over, my friend! Inster coin!'
+		'Game over, my friend! Insert coin!'
 	end
 end
-
-
-
 
 class Game
 	attr_accessor :player1, :player2, :winner
@@ -60,4 +57,5 @@ private
 	def has_two_players?
 		!player2.nil?
 	end
+
 end
