@@ -1,6 +1,6 @@
 class GameOverError < Exception
 	def message
-		'Game over, my friend! Insert coin!'
+		"You Win..."
 	end
 end
 

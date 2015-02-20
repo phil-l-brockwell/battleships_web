@@ -4,27 +4,30 @@ body
   text-align: center;
 }
 
-h1{
+h1
+{
   margin-top: 225px;
   font-weight: lighter;
   font-family: courier;
   color: white;
-  font-size: 100px
+  font-size: 100px;
 }
 
-h2{
+h2
+{
   color: white;
   font-family:courier;
-  margin-right: 70px
 }
 
-h3{
+h3
+{
   color: white;
   font-family:courier;
-  margin-right: 70px
+  font-size: 50px;
 }
 
-#button{
+#button
+{
   border-radius: 100px;
   font-family: courier;
   color: white;
@@ -32,7 +35,8 @@ h3{
   font-size:20px;
 }
 
-#button:hover{
+#button:hover
+{
   background-color: silver;
 }
 
@@ -41,14 +45,16 @@ form
   text-align: center;
 }
 
-table.center {
+table.center 
+{
   margin-left:auto;
   margin-right:auto;
   height: 90%;
   width: 60%;
 }
 
-th{
+th
+{
   color: white;
   font-family: courier;
 }
@@ -78,10 +84,24 @@ td
   font-size:20px;
 }
 
+#button_grey
+{
+  border-radius: 100px;
+  font-family: courier;
+  color: white;
+  background-color: gray;
+  font-size:20px;
+}
+
 a 
 {
   color: white;
   text-decoration: none;
   padding-left: 30px;
   padding-right: 30px;
+}
+
+audio
+{
+  display: none;
 }

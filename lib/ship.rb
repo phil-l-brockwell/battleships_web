@@ -12,7 +12,7 @@ class Ship
 	end
 
 	def sunk?
-		hits == size
+		hits >= size
 	end
 
 	def floating?
