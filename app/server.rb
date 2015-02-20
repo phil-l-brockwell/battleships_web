@@ -5,8 +5,6 @@ require_relative '../lib/board'
 require_relative '../lib/cell'
 require_relative '../lib/ship'
 
-
-
 class BattleShipsWeb < Sinatra::Base
 
   set :views, Proc.new { File.join(root, "..", "views") }
@@ -15,6 +13,20 @@ class BattleShipsWeb < Sinatra::Base
   enable :sessions
 
   game = Game.new
+  ship = Ship.new(1)
+  ship2 = Ship.new(1)
+  ship3 = Ship.new(1)
+  ship4 = Ship.new(1)
+  player1 = Player.new()
+  player1.board = Board.new(Cell)
+  player1.board.place(ship, :A7)
+  player1.board.place(ship2, :B7)
+  game.add_player(player1)
+  player2 = Player.new()
+  player2.board = Board.new(Cell)
+  game.add_player(player2)
+  player2.board.place(ship3, :A1)
+  player2.board.place(ship4, :B1)
 
   get('/') do
     erb :index
@@ -24,24 +36,15 @@ class BattleShipsWeb < Sinatra::Base
     erb :enter_name
   end
 
+  post('/enter_second_name') do
+    player1.name = params[:player1_name]
+    erb :enter_second_name
+  end
+
   post('/new_game') do
-    ship = Ship.new(1)
-    ship2 = Ship.new(1)
-    ship3 = Ship.new(1)
-    ship4 = Ship.new(1)
-    player = Player.new()
-    player.name = params[:user_name]
-    player.board = Board.new(Cell)
-    player.board.place(ship, :A7)
-    player.board.place(ship2, :B7)
-    game.add_player(player)
-    computer = Player.new()
-    computer.name = "computer"
-    computer.board = Board.new(Cell)
-    game.add_player(computer)
-    computer.board.place(ship3, :A1)
-    computer.board.place(ship4, :B1)
-    @player = game.current_player
+    player2.name = params[:player2_name]
+    @current_player = game.current_player
+    game.current_player == player1 ? @opponent = game.player2 : @opponent = game.player1
     erb :new_game
   end
 
@@ -53,12 +56,9 @@ class BattleShipsWeb < Sinatra::Base
     rescue DoubleHitError => e
       @message = e.message
     end
-      @player = game.current_player
+    @current_player = game.current_player
+    game.current_player == player1 ? @opponent = game.player2 : @opponent = game.player1
       erb :new_game
-  end
-
-  get './winnner' do
-
   end
 
   # start the server if ruby file executed directly

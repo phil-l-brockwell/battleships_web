@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
-    <h3>Its your turn <%= @player.name.capitalize %></h3>
+    <h3>Its your turn <%= @current_player.name.capitalize %>...</h3>
 
     <% if @message %>
       <h1><%= @message %></h1>
@@ -12,10 +12,16 @@
 
 
 <table class="center">
-<% @player.board.grid.each_slice(10) do |row|%>
+<% @opponent.board.grid.each_slice(10) do |row|%>
   <tr>
    <%row.each do |cell| %>
-    <td id="button"> <a href="/shoot?cell=<%=cell[0]%>"><%= cell[0] %></a> </td>
+   <% if cell[1].hit == true && cell[1].content.class == Ship %>
+    <td id="button_red"> <a href="/shoot?cell=<%=cell[0]%>"></a> </td>
+    <% elsif cell[1].hit == true && cell[1].content.class == Water %>
+    <td id="button_blue"> <a href="/shoot?cell=<%=cell[0]%>"></a> </td>
+   <% else %>
+    <td id="button"> <a href="/shoot?cell=<%=cell[0]%>"></a> </td>
+    <% end %>
    <%end%>
   </tr>
 <%end%>

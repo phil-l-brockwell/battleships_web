@@ -9,6 +9,7 @@ class Cell
 
 	def shoot
 		@hit = content.hit!
+		@hit = true
 	end
 
 	def hit?
