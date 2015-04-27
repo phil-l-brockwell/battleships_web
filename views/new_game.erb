@@ -18,7 +18,7 @@
     <table class="center">
       <% @opponent.board.grid.each_slice(10) do |row|%>
         <tr>
-          <%row.each do |cell| %>
+          <% row.each do |cell| %>
             <% if cell[1].hit == true && cell[1].content.class == Ship && cell[1].content.sunk? == true %>
               <td id="button_grey"> <a href="/shoot?cell=<%=cell[0]%>"></a> </td>
             <% elsif cell[1].hit == true && cell[1].content.class == Ship %>
@@ -28,9 +28,9 @@
             <% else %>
               <td id="button"> <a href="/shoot?cell=<%=cell[0]%>"></a> </td>
             <% end %>
-          <%end%>
+          <% end %>
         </tr>
-      <%end%>
+      <% end %>
     </table>
 
   </body>

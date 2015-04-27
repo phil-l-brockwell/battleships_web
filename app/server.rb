@@ -39,6 +39,7 @@ class BattleShipsWeb < Sinatra::Base
   player2.board.place(ship8, :F2)
   player2.board.place(ship9, :G4)
   player2.board.place(ship10, :I4)
+
   get('/') do
     erb :index
   end
@@ -76,4 +77,3 @@ class BattleShipsWeb < Sinatra::Base
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
-
