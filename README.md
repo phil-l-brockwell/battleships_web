@@ -11,7 +11,7 @@ A web version of the classic Board Game
 
 # Pair Partner
 
-During this task I was paired with Paul Fitzgerald, his profile can be viewed here: https://github.com/Pau1fitz
+During this task I was paired with [Paul Fitzgerald](https://github.com/Pau1fitz). 
 
 In the space of three days we were able to code a working 2 player solution. Although this solution did have some limitations.
 For example: all of the ships were hard coded, and both players had to use the same machine.
